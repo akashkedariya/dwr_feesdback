@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+  <title>Feedback Form</title>
+  <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    p {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      height: 150px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    /*  */
+
+    .radio-group {
+        display: inline-block;
+    }
+    .radio-group label {
+        display: inline;
+        margin-right: 10px; /* Adjust as needed */
+    }
+    /* .spacer {
+    margin-left: 10px;
+  } */
+
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Feedback Form</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+        <label for="topic">Topic:</label>
+        <select  class="btn btn-secondary dropdown-toggle" id="topic" name="project_topic">
+          {% for topic in topics %}
+        
+          <option value="{{ topic.id }}" >{{ topic.topic }}</option>
+          {% endfor %}
+        </select><br><br>
+
+      <label for="issue">Issue type:</label>
+      <select class="btn btn-secondary dropdown-toggle" id="issue" name="roject_issue" >
+        {% for issue in issues %}
+        <option value="{{ issue.id }}">{{ issue.issue_type }}</option>
+        {% endfor %}
+      </select><br><br>
+
+      <div class="form-group">
+        <label for="rm">Reporting Manager:</label>
+        <input type="text" id="rm" name="reporting_manager" required>
+      </div>
+      
+      <!-- <div class="form-group">
+        <p>Have you discussed with your reporting manager?</p>
+        <div class="radio-group">
+          <label for="yes">Yes</label>
+          <input type="radio" id="yes" name="discussed_with_rm" value="True" required>
+          <label for="no">No</label>
+          <input type="radio" id="no" name="discussed_with_rm" value="False">
+        </div> -->
+        
+      <div class="form-group">
+          <p>Have you discussed this with your reporting manager?</p>
+          <div class="radio-group">
+              <label for="yes">Yes</label>
+              <input type="radio" id="yes" name="discussed_with_rm" value="True" required>
+              <!-- <div class="spacer"></div> -->
+              <label for="no">No</label>
+              <input type="radio" id="no" name="discussed_with_rm" value="False">
+              <p></p>
+              <br>
+              <p></p>
+              <div class="form-group">
+                <label for="message">Description:</label>
+                <textarea id="message" name="message" required></textarea>
+                
+                <!-- <input type="file" id="" name="attached_file" accept=""><br> -->
+                <div class="mb-3">
+                  <label for="formFileDisabled" class="form-label"></label>
+                  <!-- <input class="form-control" type="file" id="formFileDisabled" disabled> -->
+                  <input type="file" id="" name="attached_file" accept="" class="form-control">
+                </div>
+                
+                <input type="submit" value="Submit">
+              </div>
+              
+               <a href="{% url 'feedback_history' %}" class="sm-2 btn btn-success" >Show feedback</a>
+               <a href="{% url 'user_logout' %}" class="sm-2 btn btn-info" >Logout</a>
+
+          </div>                                                                                                                                                                                                                                
+      </div>
+      </div>
+    </form>
+  </div>
+
+</body>
+
+</html>

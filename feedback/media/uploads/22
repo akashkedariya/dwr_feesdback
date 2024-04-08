@@ -1,0 +1,191 @@
+--> working on HRMS
+--> Create leave application
+--> Create partial leave doc type
+-->
+--> 
+-->
+
+
+
+sudo lsof -t -i tcp:8000 | xargs kill -9
+
+X-CSRFToken
+
+akash181097
+
+sudo dd if=/dev/zero of=/swapfile bs=1G count=16
+
+
+#======frapppe
+
+ bench --site mysite1 serve --port 8001
+
+format:TTT-{mm}-{fname}-{####}
+
+103 : <div class="col-lg-2 layout-side-section"></div>
+
+http://127.0.0.1:8000/app/my-workspace1
+
+
+PREE--.#####
+
+
+frappe.ui.form.on('Employee', {
+	after_save : function(frm) {
+	    
+        birth = frm.doc.birthdate
+        joinig = frm.doc.date_of_joining
+        // console.log("=======birth",birth);
+        
+        if (birth > joinig){
+            console.log("=======birth",typeof(birth));
+            frappe.msgprint(__('Birthdate must be greater then Joining Date'));
+        }
+        
+	    tot_salary = frm.doc.total_salary
+	    dd = frm.doc.day
+	    one_day_salary = tot_salary/30
+
+	    day_count = dd * one_day_salary
+      
+        total = tot_salary - day_count
+        console.log("=======total4444444444444444",total);
+		frm.set_value('final_salary',total)
+	}
+})
+
+
+=====================================================================
+
+frappe.db.insert({'doctype':'College','stu_name':data})
+
+================================================================================================
+
+	def Emp_chackin(self):
+		emp = self.employee
+		emp_name = self.employee_name
+		log_type = self.log_type
+		date = getdate(self.time)
+		print('=========date===========',log_type)
+		if log_type == 'IN':
+			print('=========log_type1===========',log_type)
+			doc = frappe.new_doc('Attendance')
+			doc.employee = emp
+			doc.employee_name = emp_name
+			doc.subject = log_type
+			doc.attendance_date = date
+			doc.insert(ignore_permissions=True)
+			
+			doc.submit()
+			# doc.docstatus == DocStatus.submitted()
+			print('=========date===========',doc.docstatus)
+			# doc.insert()
+		elif log_type == 'OUT':
+			print('=========log_type2===========',log_type)	
+			doc = frappe.new_doc('Attendance')
+			doc.employee = emp
+			doc.employee_name = emp_name
+			doc.subject = log_type
+			doc.attendance_date = date
+			doc.insert(ignore_permissions=True)
+			# doc.document_status = 1
+			# print('=========date===========',doc.document_status)
+			doc.insert()
+			doc.submit()
+
+
+
+
+
+		var doc_task = frm.get_doc("Shift Type");
+        var start_time = doc_task.shift_start                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+        console.log("=== start_time ===",start_time)
+================================================================================================
+
+
+frappe.ui.form.on('Employee Checkin', {
+	
+	after_save: function(frm) {
+		
+        console.log("======New log=11===============")
+        employee = frm.doc.employee
+        employee_name = frm.doc.employee_name
+        log_type = frm.doc.log_type
+        current_time =  frm.doc.time
+        console.log("=== log_type ==",log_type)
+
+		var doc_data = frm.get_doc("Shift Type");
+		console.log("======New doc_data=11===============",doc_data)
+        employee = frm.doc.employee
+        var start_start_time = doc_data.shift_start
+        var shift_end_end = doc_data.shift_end                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+        console.log("=== start_start_time ===",start_start_time)
+        console.log("=== shift_shift_end_ ===",shift_end_end)
+
+		if (log_type == 'IN' , current_time > start_start_time) {
+			console.log("======late_entry=11=Working=============")
+			frappe.db.insert({
+			'doctype':'Attendance',
+			'employee' :employee,
+			'employee_name':employee_name,
+			'attendance_date':current_time,
+			'late_entry':1,
+			'docstatus':1,
+		})
+		
+			console.log("======late_entry=22==============")
+		}
+		else if (log_type == 'OUT' , current_time < start_start_time) {
+			console.log("======early_exit==OUT=============")
+			frappe.db.insert({
+			'doctype':'Attendance',
+			'employee' :employee,
+			'employee_name':employee_name,
+			'attendance_date':current_time,
+			'early_exit':1,
+			'docstatus':1,
+		})
+			
+		}
+
+	}
+});
+
+
+============================================================================================================================================================================
+
+		if emp != data[0]['employee'] or date != data[1]['attendance_date']:
+			print('=========working conditions===============')
+			if log_type == 'IN' : 
+				if current_time > shift_time:
+					print('=========late entry================')
+					data = frappe.new_doc('Attendance')
+					data.flags.ignore_permissions=True
+					data.employee = emp
+					data.employee_name = emp_name
+					data.attendance_date = self.time
+					data.late_entry = 1
+					data.insert()
+					data.submit()
+					
+					
+====================================================================================================================================================================
+
+list1 = [10, 11, 12,2]
+list2 = [9, 2, 3,4]
+
+subtracted = list()
+time_count = 0
+if len(list1) == len(list2):
+    for i in range(len(list1)):
+        item = list1[i] - list2[i]
+        subtracted.append(item)
+        time_count = time_count + item
+    
+    print(subtracted)
+    print(time_count)
+    
+else:
+    print('=======you have out first=============')					
+					
+

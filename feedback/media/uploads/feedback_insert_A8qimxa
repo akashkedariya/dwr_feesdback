@@ -1,0 +1,33 @@
+# @csrf_exempt
+# def feedback(request):
+
+#     if request.method == 'POST' or request.FILES.get('file'):
+#         print('=======working========') 
+
+#         id = request.POST['id']
+#         project = request.POST['project']
+#         issue_type = request.POST['issue_type']
+#         reporting_manager = request.POST['reporting_manager']
+#         discussed_with_rm = request.POST['discussed_with_rm']
+#         input_box = request.POST['input_box']
+#         # attached_file = request.POST['attached_/file']
+#         # attached_file = request.POST.get('attached_file')
+#         attached_file = request.FILES['attached_file']
+
+#         print('=========attached_file============',attached_file)
+
+#         # MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+#         # static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#         file_path = os.path.join(settings.MEDIA_ROOT, str(attached_file))
+#         # file_path = "/Desktop/dwr_feedback/attached_file" 
+
+#         print('============file_path============',file_path)
+#         cursor = connection.cursor()
+#         cursor.execute("""INSERT INTO public."feedback" (id,project, issue_type, reporting_manager, discussed_with_rm, input_box, attached_file)
+#                                     SELECT %s, %s, %s, %s, %s, %s, %s""", (id,project, issue_type, reporting_manager, discussed_with_rm, input_box, file_path))
+        
+
+#         # cursor.execute("""SELECT id, "projectCode", "projectName" FROM public.project;""")
+#         # project_code = cursor.fetchall()
+
+#         return JsonResponse({'status':200,'Feedback':'Feedback submited'},status = 200)
