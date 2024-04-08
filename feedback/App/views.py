@@ -102,7 +102,7 @@ def add_project(request):
         return HttpResponse("Project add successfully")  
 
     else:  
-        print('========request===req===',request)
+        
         if request.session.get('email'):
             
             return render(request, "addproject.html") 
@@ -222,9 +222,9 @@ def dwr_feedback_history(request) :
         history = Feedback_history.objects.all()
 
         history_list = []
-        # history_dict = []
+        
         for data in history :
-            print('==============data================',data.attached_file)
+            
             file = data.attached_file
             history_dict = {
                 'id' : data.id,
